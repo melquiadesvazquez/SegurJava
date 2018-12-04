@@ -1,0 +1,86 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="title">
+        Sensores cliente
+    </ui:define>
+
+    <ui:define name="content">
+        <h1>Bienvenido ${sensoresBean.login.clienteLogueado.nombre}</h1>
+        
+        <h:form>
+			<br/><br/>
+			<h:dataTable styleClass="table table-striped table-sm" var="s" value="#{sensoresBean.sensores}" border="1" rendered="#{!empty sensoresBean.sensores}">
+				<h:column>
+					<f:facet name="header">Lugar</f:facet>
+					#{s.lugar}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Estado</f:facet>
+					<h:commandButton styleClass="btn btn-lg btn-outline-secondary" value="Desactivado" action="#{sensoresBean.activar(s)}" rendered="#{!s.activo}"/>
+					<h:commandButton styleClass="btn btn-lg btn-primary" value="Activado" action="#{sensoresBean.desactivar(s)}" rendered="#{s.activo}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Alerta</f:facet>
+					<span class="alerta btn btn-lg btn-secondary" data-id="#{s.idSensor}">comprobando...</span>
+				</h:column>
+				<h:column>
+					<f:facet name="header"></f:facet>				
+					<h:commandButton styleClass="btn btn-lg btn-outline-dark" value="Quitar sensor" action="#{sensoresBean.quitar(s)}"/>
+				</h:column>
+			</h:dataTable>
+			<br/><br/>
+			<table class="table table-striped table-sm">
+				<thead>
+					<tr>
+						<th scope="col">Lugar</th>
+						<th scope="col" colspan="3"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="3">
+							<h:inputText styleClass="form-control" value="#{sensoresBean.sensorLugar}" />		
+						</td>
+						<td><h:commandButton styleClass="btn btn-lg btn-dark" value="Nuevo sensor" action="#{sensoresBean.crear()}"/></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<h:commandButton styleClass="btn btn-lg btn-warning" action="#{sensoresBean.baja()}" value="Darse de baja"/>
+		  	<p><h:outputText value="#{sensoresBean.mensajeError}"/></p>
+		</h:form>
+		
+
+		
+		<script type="text/javascript">
+			var evt;
+			
+			function conexion(){
+				var url="http://localhost:3000/clientes/#{sensoresBean.login.clienteLogueado.idCliente}/sensoresflux";
+				evt=new EventSource(url);
+				evt.addEventListener("message", function(e){
+					var datos=JSON.parse(e.data);
+					
+					document.querySelectorAll(".alerta").forEach(function (item, i) {
+						console.log(datos.includes(parseInt(item.dataset.id)), datos, item.dataset.id)
+						
+						if (datos.includes(parseInt(item.dataset.id))) {							
+							item.classList.add("btn-danger");
+							item.classList.remove("btn-success");
+						}
+						else {
+							item.classList.remove("btn-danger");
+							item.classList.add("btn-success");
+						}
+					});				
+				});
+			}
+			
+			window.onload = conexion();
+		</script>	
+    </ui:define>
+</ui:composition>

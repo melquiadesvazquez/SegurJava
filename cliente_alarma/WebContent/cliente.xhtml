@@ -1,0 +1,61 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="title">
+        Login cliente
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="jumbotron" style="width:500px;margin:20px auto;">
+		<h:form>
+		  <div class="form-group row">
+		    <label for="usuario" class="col-sm-2 col-form-label">Nombre</label>
+		    <div class="col-sm-10">
+		      <h:inputText styleClass="form-control" value="#{clienteBean.cliente.nombre}" />
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="usuario" class="col-sm-2 col-form-label">Usuario</label>
+		    <div class="col-sm-10">
+		      <h:inputText styleClass="form-control" value="#{clienteBean.cliente.usuario}" />
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="password" class="col-sm-2 col-form-label">Password</label>
+		    <div class="col-sm-10">
+		      <h:inputSecret styleClass="form-control" value="#{clienteBean.cliente.password}" />
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="usuario" class="col-sm-2 col-form-label">Email</label>
+		    <div class="col-sm-10">
+		      <h:inputText styleClass="form-control" value="#{clienteBean.cliente.email}" />
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="usuario" class="col-sm-2 col-form-label">DNI</label>
+		    <div class="col-sm-10">
+		      <h:inputText styleClass="form-control" value="#{clienteBean.cliente.dni}" />
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="usuario" class="col-sm-2 col-form-label">Cuenta</label>
+		    <div class="col-sm-10">
+		      <h:inputText styleClass="form-control" value="#{clienteBean.cliente.cbancaria}" />
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="usuario" class="col-sm-2 col-form-label">Direccion</label>
+		    <div class="col-sm-10">
+		      <h:inputText styleClass="form-control" value="#{clienteBean.cliente.direccion}" />
+		    </div>
+		  </div>
+		  <h:commandButton styleClass="btn btn-primary btn-lg" action="#{clienteBean.registrar()}" value="Registrar"/>
+		  <p><h:outputText value="#{clienteBean.mensajeError}"/></p>
+		</h:form>
+		</div>	
+    </ui:define>
+</ui:composition>

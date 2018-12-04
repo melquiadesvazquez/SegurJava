@@ -1,0 +1,57 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="title">
+        Probar alarmas
+    </ui:define>
+
+    <ui:define name="content">
+        <h1>Informes</h1>
+        
+        <h:form>
+	        <div class="jumbotron" style="width:500px;margin:20px auto;">
+	        	<div class="form-group row">
+				    <label for="usuario" class="col-sm-2 col-form-label">DNI</label>
+				    <div class="col-sm-10">
+				      <h:inputText styleClass="form-control" value="#{historicosBean.dni}" />
+				    </div>
+				</div>			
+				<div class="form-group row">
+				    <label for="usuario" class="col-sm-2 col-form-label">Desde</label>
+				    <div class="col-sm-10">
+				      <h:inputText a:type="date" styleClass="form-control" value="#{historicosBean.from}" />
+				    </div>
+				</div>
+	        	<div class="form-group row">
+				    <label for="usuario" class="col-sm-2 col-form-label">Hasta</label>
+				    <div class="col-sm-10">
+				      <h:inputText a:type="date" styleClass="form-control" value="#{historicosBean.to}" />
+				    </div>
+				</div>
+				<p><h:outputText value="#{historicosBean.mensajeError}"/></p>				
+				<h:commandButton styleClass="btn btn-primary btn-lg" action="#{historicosBean.buscar()}" value="Buscar"/>
+			</div>
+			<br/><br/>
+			<h:dataTable styleClass="table table-striped table-sm" var="h" value="#{historicosBean.historicos}" border="1" rendered="#{!empty historicosBean.historicos}">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					#{h.idHistorico}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Fecha</f:facet>
+					#{h.fecha}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Sensor</f:facet>
+					#{h.sensor.lugar}
+				</h:column>
+			</h:dataTable>						  	
+		</h:form>
+		
+	
+    </ui:define>
+</ui:composition>

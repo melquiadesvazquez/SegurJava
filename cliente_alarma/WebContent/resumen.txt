@@ -1,0 +1,46 @@
+modos:
++ modo detección (se ha producido un salto de alarma)
++ modo normal (no se ha producido salto de alarma)
+
+alarma:
++ Fecha/hora
+
+modulos:
++ Cliente
++ Servidor
+
+cliente:
++ autenticarse
++ opciones:
+	+ visualización del sistema
+		+ Lista de sensores (activo o inactivo)
+			+ Activar/Desactivar sensor
+			+ Eventos en tiempo real, Flux?
+		+ Contratar/Quitar sensor
+			+ Donde lo quiere?
+		+ Baja
+			+ No se borran los datos
+			
+administrador:
++ opciones:
+	+ Alta de clientes
+		+ Campos: nombre, dirección, email, dni, número de cuenta bancaria, usuario y contraseña (encriptada)
+		+ Si ya estuvo de alta lo habilitara
+		+ Lista de sensores
+		+ Aviso a la policia
+	+ Informes
+		+ actividad de usuario
+			+ dni -> alarmas
+		+ actividad temporal
+			+ rango de fechas -> (nombre cliente, fecha, dirección y sensor)
+
+aviso a la policia:
++ servicio web
+	+ {"direccion":"direccion_cliente", "fecha":"10-03-2013 16:20"}
+	+ cliente y servidor
+	
+documentacion:
+	+ memoria
+	+ diagrama de clases UML
+		
+		

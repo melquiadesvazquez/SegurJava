@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>90</y>
+      <w>160</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Sensor
+--
+idSensor: int
+idCliente: int
+activo: boolan
+alerta: boolean
+lugar: string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>90</y>
+      <w>160</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Cliente
+--
+idCliente: int
+nombre: string
+dirección: string
+email: string
+dni: string
+cbancaria: int
+usuario: string
+password: string
+activo: boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>110</y>
+      <w>220</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=n
+m2=1
+&lt; tiene</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>370</y>
+      <w>160</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Historico
+--
+idHistorico: int
+idCliente: int
+idSensor: int
+fecha: datetime	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>190</x>
+      <y>200</y>
+      <w>40</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=n
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>260</y>
+      <w>300</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=n
+</panel_attributes>
+    <additional_attributes>270.0;10.0;270.0;160.0;10.0;160.0</additional_attributes>
+  </element>
+</diagram>
